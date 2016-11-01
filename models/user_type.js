@@ -3,6 +3,8 @@ module.exports = function(sequelize, DataTypes) {
 		ut_id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
 		ut_name: {type: DataTypes.STRING },
 	}, {
+		underscored: false,
+		timestamps: false,
 		tableName: 'users_types',
 		classMethods: {
 			associate: function(models) {

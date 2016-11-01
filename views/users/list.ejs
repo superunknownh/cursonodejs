@@ -1,0 +1,35 @@
+<% include ../partials/header %>
+
+<div class="row">
+	<div class="col-xs-12">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Fullname</th>
+					<th>Description</th>
+					<th>User type</th>
+					<th>ops</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% users.some(function(user) { %>
+					<tr>
+						<td><%= user.user_id %></td>
+						<td><%= user.user_name %></td>
+						<td><%= user.user_fullname %></td>
+						<td><%= user.user_description %></td>
+						<td><%= user.UserType.ut_name %></td>
+						<td>
+							<a href="/users/edit/<%= user.user_id %>">edit</a>&nbsp;
+							<a href="/users/delete/<%= user.user_id %>">delete</a>
+						</td>
+					</tr>
+				<% }); %>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<% include ../partials/footer %>
