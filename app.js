@@ -30,17 +30,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-require('./lib/passport')(passport);
+// configurar la sesión
 app.use(session({
-  secret: 'cursonodejs',
-  name: 'cursonodejs',
-  proxy: true,
-  resave: true,
-  saveUninitialized: true
+	secret: 'cursonodejs',
+	name: 'cursonodejs',
+	proxy: true,
+	resave: true,
+	saveUninitialized: true
 }));
+app.use(flash());
+
+require('./lib/passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());
+
 
 var index = require('./routes/index');
 var users = require('./routes/users');
