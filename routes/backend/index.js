@@ -3,7 +3,12 @@ var router = express.Router();
 
 router.get('/', Auth.isBEAuthenticated, function(req, res, next) {
 	User.find({where: {user_id : req.user.user_id}}).then(function(user) {
-		res.send('Welcome back <strong>' + user.user_name + '</strong> <a href="/admin/logout">logout</a>');
+		res.render('backend/index', {
+			title: 'Backend',
+			user: user,
+			infoMessage: req.flash('infoMessage'),
+			errorMessage: req.flash('errorMessage')
+		});
 	});
 });
 

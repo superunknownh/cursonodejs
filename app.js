@@ -1,3 +1,10 @@
+/*
+ * Hugo Sánchez Landaverde
+ * email: is.hugosl@hotmail.com
+ * tel: 442 117 4325
+ * skype: is.hugosl
+ */
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -16,6 +23,8 @@ UserType = db['UserType'];
 
 Auth = require('./lib/auth');
 Crypt = require('./lib/crypt');
+Secure = require('./lib/sanitize');
+Util = require('./lib/util');
 
 var app = express();
 

@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/', function(req, res, next) {
+router.get('/', Auth.isBEAuthenticated, function(req, res, next) {
 	res.redirect('/admin/users/list');
 });
 
-router.get('/list', function(req, res, next) {
+router.get('/list', [Auth.isBEAuthenticated, Auth.hasPrivileges([1, 3])], function(req, res, next) {
 	User.all({include: {model:db['UserType'], as:'UserType'}}).then(function(users) {
 		res.render('backend/users/list', {
 			title : 'List users',
@@ -14,7 +14,7 @@ router.get('/list', function(req, res, next) {
 	});
 });
 
-router.get('/add', function(req, res, next) {
+router.get('/add', Auth.isBEAuthenticated, function(req, res, next) {
 	UserType.all().then(function(users_types) {
 		res.render('backend/users/add', {
 			title : 'Add user',
@@ -23,7 +23,7 @@ router.get('/add', function(req, res, next) {
 	});
 });
 
-router.post('/add', function(req, res, next) {
+router.post('/add', Auth.isBEAuthenticated, function(req, res, next) {
 	var new_user = {
 		user_name: req.body.name,
 		user_password: Crypt.encryptPassword(req.body.password),
@@ -36,7 +36,7 @@ router.post('/add', function(req, res, next) {
 	});
 });
 
-router.get('/edit/:id', function(req, res, next) {
+router.get('/edit/:id', Auth.isBEAuthenticated, function(req, res, next) {
 	User.find({where: {user_id: req.params.id}}).then(function(user) {
 		if (user) {
 			UserType.all().then(function(users_types) {
@@ -52,7 +52,7 @@ router.get('/edit/:id', function(req, res, next) {
 	});
 });
 
-router.post('/edit', function(req, res, next) {
+router.post('/edit', Auth.isBEAuthenticated, function(req, res, next) {
 	var edit_user = {
 		user_id: req.body.id,
 		user_name: req.body.name,
@@ -72,7 +72,7 @@ router.post('/edit', function(req, res, next) {
 	});
 });
 
-router.get('/delete/:id', function(req, res, next) {
+router.get('/delete/:id', Auth.isBEAuthenticated, function(req, res, next) {
 	User.find({where: {user_id: req.params.id}}).then(function(user_found) {
 		if (user_found) {
 			user_found.destroy().then(function(user_destroyed) {
