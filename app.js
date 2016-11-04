@@ -15,6 +15,7 @@ User = db['User'];
 UserType = db['UserType'];
 
 Auth = require('./lib/auth');
+Crypt = require('./lib/crypt');
 
 var app = express();
 
@@ -45,15 +46,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var admin = require('./routes/admin');
-var auth = require('./routes/auth');
+var index = require('./routes/frontend/index');
+var admin = require('./routes/backend/index');
+var users = require('./routes/backend/users');
+var auth = require('./routes/backend/auth');
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/admin/users', users);
 app.use('/admin', admin);
-app.use('/auth', auth);
+app.use('/admin/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

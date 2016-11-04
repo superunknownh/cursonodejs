@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
 			timestamps: false,
 			tableName: 'users',
 			classMethods: {
-				associate: function(models) {
+				associate : function(models) {
 					Model.belongsTo(models.UserType, {as: 'UserType', foreignKey: 'user_type'})
 				}
 			}

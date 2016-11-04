@@ -22,8 +22,8 @@
 						<td><%= user.user_description %></td>
 						<td><%= user.UserType.ut_name %></td>
 						<td>
-							<a href="/users/edit/<%= user.user_id %>">edit</a>&nbsp;
-							<a href="/users/delete/<%= user.user_id %>">delete</a>
+							<a href="/admin/users/edit/<%= user.user_id %>">edit</a>&nbsp;
+							<a href="/admin/users/delete/<%= user.user_id %>">delete</a>
 						</td>
 					</tr>
 				<% }); %>

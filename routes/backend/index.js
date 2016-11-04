@@ -9,7 +9,7 @@ router.get('/', Auth.isBEAuthenticated, function(req, res, next) {
 
 router.get('/login', Auth.passLogin, function(req, res, next) {
 	req.flash('infoMessage', 'Please enter your credentials.');
-	res.render('login', {
+	res.render('backend/login', {
 		title: 'Login',
 		infoMessage: req.flash('infoMessage'),
 		errorMessage: req.flash('errorMessage')

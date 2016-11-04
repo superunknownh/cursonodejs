@@ -1,7 +1,7 @@
 {
 	"username" : "root",
 	"password" : "",
-	"database" : "empresa",
+	"database" : "cursonodejs",
 	"host" : "127.0.0.1",
 	"dialect" : "mysql",
 	"timezone" : "-05:00"
